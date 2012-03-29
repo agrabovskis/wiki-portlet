@@ -1,24 +1,29 @@
 Wiki portlet
 =============
 
-This portlet is deployable in any JSR-168 compliant portal. Currently it is tested and working in uPortal 4.0.x environment.
+This portlet is deployable in any JSR-168 compliant portal. Currently it is 
+tested and working in uPortal 4.0.x environment.
 
 Portlet provides some very basic wiki functionalities:
-1. Create and edit wiki pages according to XWiki syntax: http://platform.xwiki.org/xwiki/bin/view/Main/XWikiSyntax
+1. Create and edit wiki pages according to XWiki syntax: 
+   http://platform.xwiki.org/xwiki/bin/view/Main/XWikiSyntax
 2. Page interlinking
-3. Page space name is used for grouping wiki pages. This ensures that pages from different portlets with same names
-   won't collide. And in the mean time setting 'pageSpace' parameter in portlet preferences to same values for
-   different portlets, allows those portlets to share the page pool. But in this situation it is recommended to set
-   'rootPage' parameter for all but one of those portlets so that first page would be different for each of those
-   portlets.
-4. 'rootPage' portlet preference parameter sets the name of the first page to use. This parameter should be used
-   whenever portlets share the same page space. By default its name is 'ROOT'
+3. Page space name is used for grouping wiki pages. This ensures that pages 
+   from different portlets with same names won't collide. And in the mean time 
+   setting 'pageSpace' parameter in portlet preferences to same values for 
+   different portlets, allows those portlets to share the page pool. But in 
+   this situation it is recommended to set 'rootPage' parameter for all but 
+   one of those portlets so that first page would be different for each of 
+   those portlets.
+4. 'rootPage' portlet preference parameter sets the name of the first page 
+   to use. This parameter should be used whenever portlets share the same page 
+   space. By default its name is 'ROOT'
    
 Installing
 -------------
 
-1. Create a DB in postgres (currently this portlet is developed using postgres, although there shouln't be much 
-   trouble using other DBMS)
+1. Create a DB in postgres (currently this portlet is developed using 
+   postgres, although there shouln't be much trouble using other DBMS)
 2. Create DB structure by executing SQL provided in 'init.sql' file
 3. Configure src/main/webapp/META-INF/context.xml according to your needs
 4. Build a .war file using 'mvn clean package'
