@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" 
+  xmlns:spring="http://www.springframework.org/tags" 
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:portlet="http://java.sun.com/portlet">
+  <jsp:directive.page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" />
+
+  <portlet:defineObjects />
+  <c:set var="ns">
+    <portlet:namespace />
+  </c:set>
+  <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+  <script type="text/javascript">
+    function toogle(fld, id) {
+        elem = document.getElementById(id);
+        if (elem.style.display == 'none') {
+            elem.style.display = 'block';
+            fld.style.backgroundImage = 'url(${contextPath}/media/images/expanded.gif)';
+        } else {
+            elem.style.display = 'none';
+            fld.style.backgroundImage = 'url(${contextPath}/media/images/collapsed.gif)';
+        }
+    }
+</script>
+
+  <h2><spring:message code="exception.title" /></h2>
+
+  <p><spring:message code="exception.message" /></p>
+
+  <h3 style="background: transparent url(${contextPath}/media/images/collapsed.gif) no-repeat scroll 0 0; padding-left:15px; cursor: pointer; font-weight: bold;"
+    onclick="toogle(this, '${ns}stackTrace');" id="${ns}toggler"><spring:message code="exception.content" /></h3>
+  <pre id="${ns}stackTrace" style="display:none;">
+    <c:out value="${exception}" /><br />
+    <c:forEach var="item" items="${exception.stackTrace}">
+      <c:out value="  at ${item}" />
+    <br />
+    </c:forEach>
+  </pre>
+  
+  <portlet:renderURL var="renderUrl" />
+  <a href="${renderUrl}"><spring:message code="exception.retry"/></a>
+</jsp:root>

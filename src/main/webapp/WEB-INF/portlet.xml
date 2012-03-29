@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app id="WebApp_ID" version="1.0" xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_1_0.xsd">
+
+
+
+  <portlet>
+    <portlet-name>Wiki</portlet-name>
+    <display-name xml:lang="lv">Wiki</display-name>
+    <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+    <init-param>
+      <name>contextConfigLocation</name>
+      <value>/WEB-INF/classes/context/portlet/wiki.xml</value>
+    </init-param>
+    <expiration-cache>0</expiration-cache>
+    <supports>
+      <mime-type>text/html</mime-type>
+      <portlet-mode>view</portlet-mode>
+      <portlet-mode>help</portlet-mode>
+    </supports>
+    <supported-locale>lv</supported-locale>
+    <resource-bundle>bundles/wiki</resource-bundle>
+    <security-role-ref>
+      <role-name>wikiEditors</role-name>
+      <role-link>wikiEditor</role-link>
+    </security-role-ref>
+  </portlet>
+
+</portlet-app>

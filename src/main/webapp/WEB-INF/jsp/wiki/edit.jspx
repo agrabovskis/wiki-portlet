@@ -1,0 +1,64 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0" 
+  xmlns:portlet="http://java.sun.com/portlet" 
+  xmlns:c="http://java.sun.com/jsp/jstl/core"
+  xmlns:fmt="http://java.sun.com/jsp/jstl/fmt"
+  xmlns:spring="http://www.springframework.org/tags" 
+  xmlns:form="http://www.springframework.org/tags/form">
+
+  <jsp:directive.page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" />
+
+  <!-- Variable definitions -->
+  <portlet:defineObjects />
+  <c:set var="ns"><portlet:namespace /></c:set>
+  <c:set var="contextPath" value="${pageContext.request.contextPath}" />
+  <portlet:actionURL var="submitUrl" />
+  
+  
+
+
+  <style type="text/css">
+ 
+  #${ns}wikiText {width: 100%;padding: 0;height:120px;}
+  #${ns}wikiText_parent {padding: 1px;}
+ 
+   </style>
+
+ <!-- 
+      <div class="bl">${string}</div>
+      <br/>
+      <br/>
+      <div class="bl">${html}</div>
+      <br/>
+      <br/>
+  --> 	
+  
+<!-- Navigation -->
+
+<div id="${ns}navigation" class=" uportal-channel-menu">
+<a href="${homeUrl}" class="uportal-channel-menu-item"><spring:message code="wiki.home"/></a>
+<a href="${listUrl}" class="uportal-channel-menu-item"><spring:message code="wiki.viewall"/></a>
+</div>
+  
+  
+        
+	<form:form id="${ns}form" action="${returnUrl}" commandName="wiki" autocomplete="off">
+
+		<div id="${ns}wikiText_parent">
+			<form:textarea path="wikiText" tabindex="1" id="${ns}wikiText" />
+		</div>
+		<div id="${ns}wikiText_parent">
+			<form:input path="title" tabindex="1" id="${ns}wikiTitle" />
+		</div>
+		<div>
+			<form:hidden path="name" />
+			<form:hidden path="lang" />
+		</div>
+		<div>
+			<input id="${ns}sumit" name="submit" type="submit" value="Submit" class="portlet-form-button" />
+		</div>
+	</form:form>
+
+
+</jsp:root>
+
+

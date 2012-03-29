@@ -1,0 +1,198 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>lv.rtu.itd</groupId>
+	<artifactId>wiki-portlet</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>Wiki portlet</name>
+
+	<organization>
+		<name>Riga Technical University</name>
+		<url>http://www.rtu.lv</url>
+	</organization>
+
+	<developers>
+		<developer>
+			<id>viktors.jengovatovs</id>
+			<name>Viktors Jengovatovs</name>
+			<email>viktors.jengovatovs@rtu.lv</email>
+			<organization>Riga Technical University</organization>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+		<developer>
+			<id>arvids.grabovskis</id>
+			<name>Arvīds Grabovksis</name>
+			<email>arvids.grabovskis@rtu.lv</email>
+			<organization>Riga Technical University</organization>
+			<roles>
+				<role>developer</role>
+			</roles>
+		</developer>
+	</developers>
+
+	<scm>
+		<connection>scm:git:git://github.com/agrabovskis/wiki-portlet.git</connection>
+		<developerConnection>scm:git:git@github.com:agrabovskis/wiki-portlet.git</developerConnection>
+		<url>https://github.com/agrabovskis/wiki-portlet</url>
+	</scm>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-site-plugin</artifactId>
+				<version>3.0</version>
+				<configuration>
+					<outputEncoding>UTF-8</outputEncoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.2.2</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>xwiki-externals</id>
+			<name>XWiki Maven2 Remote Repository for Third Party Dependencies</name>
+			<url>http://maven.xwiki.org/externals</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
+			<id>xwiki-releases</id>
+			<name>XWiki Maven2 Remote Repository for Releases</name>
+			<url>http://maven.xwiki.org/releases</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc-portlet</artifactId>
+			<version>2.5.6.SEC01</version>
+		</dependency>
+		<dependency>
+			<groupId>taglibs</groupId>
+			<artifactId>standard</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.1.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
+			<version>2.5.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.rendering</groupId>
+			<artifactId>xwiki-rendering-api</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.rendering</groupId>
+			<artifactId>xwiki-rendering-syntax-wikimodel</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.rendering</groupId>
+			<artifactId>xwiki-rendering-syntax-xwiki2</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.commons</groupId>
+			<artifactId>xwiki-commons-component-default</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.rendering</groupId>
+			<artifactId>xwiki-rendering-transformation-macro</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.rendering</groupId>
+			<artifactId>xwiki-rendering-macro-toc</artifactId>
+			<version>3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.xwiki.rendering</groupId>
+			<artifactId>xwiki-rendering-macro-html</artifactId>
+			<version>3.4</version>
+		</dependency>
+
+		<!-- Runtime depnedencies -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+		</dependency>
+
+		<!-- Provided dependencies -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>2.1</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.pluto</groupId>
+			<artifactId>pluto-taglib</artifactId>
+			<version>1.1.7</version>
+			<scope>provided</scope>
+		</dependency>
+		<!-- Postgres driver must be included in tomcat/lib directory since we're 
+			usig data source defined in context.xml -->
+		<dependency>
+			<groupId>postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>8.3-606.jdbc4</version>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
+</project>

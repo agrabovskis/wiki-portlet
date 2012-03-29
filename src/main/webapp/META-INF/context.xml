@@ -1,0 +1,18 @@
+<Context path="/wiki" crossContext="true" reloadable="true">
+  <Resource
+    username="wiki_portlet"
+    password="wiki_portlet"
+    url="jdbc:postgresql://localhost/wiki_portlet" 
+    auth="Container"
+    type="javax.sql.DataSource"
+    name="jdbc/wiki_portlet"
+    driverClassName="org.postgresql.Driver"
+    maxActive="3"
+    maxIdle="1"
+    maxWait="10000" 
+    removeAbandoned="true"
+    removeAbandonedTimeout="30"
+    logAbandoned="true"
+    validationQuery="SELECT 1" 
+  />
+</Context>

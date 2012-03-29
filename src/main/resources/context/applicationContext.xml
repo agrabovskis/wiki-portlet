@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+  xsi:schemaLocation="http://www.springframework.org/schema/beans 
+                      http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+
+  <!-- Spring view resolver -->
+  <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+    <property name="cache" value="true" />
+    <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+    <property name="prefix" value="/WEB-INF/jsp/" />
+    <property name="suffix" value=".jspx" />
+  </bean>
+
+  <!-- Portlet and servlet exception handler templates -->
+  <bean id="portletExceptionHandlerTemplate" abstract="true" class="org.springframework.web.portlet.handler.SimpleMappingExceptionResolver">
+    <property name="defaultErrorView" value="exceptions/portlet-exception" />
+    <property name="exceptionMappings">
+      <props>
+        <prop key="org.springframework.web.multipart.MaxUploadSizeExceededException">exceptions/portlet-uploadSizeExceeded</prop>
+      </props>
+    </property>
+  </bean>
+  <bean id="servletExceptionHandlerTemplate" abstract="true" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+    <property name="defaultErrorView" value="exceptions/servlet-exception" />
+  </bean>
+  
+  <!-- Message source -->
+  <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <property name="basenames">
+      <list>
+        <value>WEB-INF/messages</value>
+      </list>
+    </property>
+    <property name="cacheSeconds" value="60" />
+    <property name="useCodeAsDefaultMessage" value="true" />
+  </bean>
+  
+  
+  <!--
+    <bean id="abstractService" abstract="true"> <property name="dataSource"> <bean class="org.springframework.jndi.JndiObjectFactoryBean"> <property
+    name="jndiName" value="java:comp/env/jdbc/Preferences" /> </bean> </property> </bean>
+  -->
+  
+    <!--
+   | DB savienojuma parametru definesana. Parametri tiek nemti no 
+   | konfiguracijas faila, kuru nosaka "propertyConfigurer" pupa.
+   +-->
+  <bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+    <property name="jndiName" value="java:comp/env/jdbc/wiki_portlet" />
+  </bean>
+  
+  <!-- 
+   | Datu piekluves objektu definesana. Saja faila tiek defineti reali DAO 
+   | objekti un attiecigajos servleta/portleta konteksta failos vini tiek 
+   | izmanoti.
+   +-->
+  <!-- Abstract class for reuse -->
+  <bean id="abstractJdbcTemplate" abstract="true">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+    
+  <!-- JDBC DAO -->
+  <bean id="wikiDao" class="lv.rtu.itd.wiki.portlets.dao.jdbc.WikiDao" parent="abstractJdbcTemplate" />
+</beans>
